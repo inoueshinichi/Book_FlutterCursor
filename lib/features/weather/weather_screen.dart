@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/cities.dart';
 import '../../data/models/weather.dart';
 import '../../data/weather_exception.dart';
+import '../../data/wmo_weather.dart';
 import 'weather_notifier.dart';
 
 class WeatherScreen extends ConsumerWidget {
@@ -66,6 +67,7 @@ class _WeatherBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final current = forecast.current;
+    final city = forecast.city;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -74,7 +76,7 @@ class _WeatherBody extends StatelessWidget {
         Card(
           child: ListTile(
             title: Text(
-              '${current.temperatureC.toStringAsFixed(1)}°C · ${current.condition}',
+              '${displayTemperature(city, current.temperatureC)} · ${displayCondition(city, current.condition)}',
             ),
             subtitle: Text('Observed ${_formatTime(current.observedAt)}'),
           ),
@@ -86,9 +88,9 @@ class _WeatherBody extends StatelessWidget {
           ListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(
-              '${_formatTime(hour.at)} · ${hour.temperatureC.toStringAsFixed(1)}°C',
+              '${_formatTime(hour.at)} · ${displayTemperature(city, hour.temperatureC)}',
             ),
-            subtitle: Text(hour.condition),
+            subtitle: Text(displayCondition(city, hour.condition)),
           ),
       ],
     );

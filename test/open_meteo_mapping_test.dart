@@ -39,6 +39,14 @@ void main() {
     expect(weatherConditionLabel(95), 'Thunderstorm');
   });
 
+  test('uses Japanese temperature and weather outside Tokyo', () {
+    expect(displayTemperature(Cities.tokyo, 22.5), '22.5°C');
+    expect(displayCondition(Cities.tokyo, 'Clear'), 'Clear');
+    expect(displayTemperature(Cities.osaka, 24), '24.0度');
+    expect(displayCondition(Cities.sapporo, 'Snow'), '雪');
+    expect(displayCondition(Cities.fukuoka, 'Rain'), '雨');
+  });
+
   test('retries 503 then succeeds', () async {
     final fixture = jsonEncode(loadOpenMeteoFixture());
     final dio = createDio(baseUrl: 'http://mock.local');
@@ -118,8 +126,8 @@ void main() {
       },
     ]);
 
-    expect(
-      () => WeatherRepository(OpenMeteoClient(dio)).fetch(Cities.tokyo),
+    await expectLater(
+      WeatherRepository(OpenMeteoClient(dio)).fetch(Cities.tokyo),
       throwsA(isA<WeatherException>()),
     );
     expect(calls, 1);
