@@ -1,0 +1,10 @@
+name: mock_server
+description: Open-Meteo compatible local forecast server.
+publish_to: none
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  shelf: ^1.4.2
+  shelf_router: ^1.1.4
