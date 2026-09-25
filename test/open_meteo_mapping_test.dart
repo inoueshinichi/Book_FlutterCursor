@@ -118,8 +118,8 @@ void main() {
       },
     ]);
 
-    expect(
-      () => WeatherRepository(OpenMeteoClient(dio)).fetch(Cities.tokyo),
+    await expectLater(
+      WeatherRepository(OpenMeteoClient(dio)).fetch(Cities.tokyo),
       throwsA(isA<WeatherException>()),
     );
     expect(calls, 1);
