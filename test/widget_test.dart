@@ -101,6 +101,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(requested, ['tokyo', 'osaka']);
-    expect(find.text('24.0°C · Clear'), findsOneWidget);
+    expect(find.text('24.0度 · 晴れ'), findsOneWidget);
   });
 }
