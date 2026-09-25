@@ -39,12 +39,11 @@ void main() {
     expect(weatherConditionLabel(95), 'Thunderstorm');
   });
 
-  test('uses Japanese temperature and weather outside Tokyo', () {
-    expect(displayTemperature(Cities.tokyo, 22.5), '22.5°C');
-    expect(displayCondition(Cities.tokyo, 'Clear'), 'Clear');
-    expect(displayTemperature(Cities.osaka, 24), '24.0度');
-    expect(displayCondition(Cities.sapporo, 'Snow'), '雪');
-    expect(displayCondition(Cities.fukuoka, 'Rain'), '雨');
+  test('uses Japanese temperature and weather for every city', () {
+    expect(displayTemperature(22.5), '22.5度');
+    expect(displayCondition('Clear'), '晴れ');
+    expect(displayCondition('Snow'), '雪');
+    expect(displayCondition('Rain'), '雨');
   });
 
   test('retries 503 then succeeds', () async {

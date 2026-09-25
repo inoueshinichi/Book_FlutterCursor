@@ -67,7 +67,6 @@ class _WeatherBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final current = forecast.current;
-    final city = forecast.city;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -76,7 +75,7 @@ class _WeatherBody extends StatelessWidget {
         Card(
           child: ListTile(
             title: Text(
-              '${displayTemperature(city, current.temperatureC)} · ${displayCondition(city, current.condition)}',
+              '${displayTemperature(current.temperatureC)} · ${displayCondition(current.condition)}',
             ),
             subtitle: Text('Observed ${_formatTime(current.observedAt)}'),
           ),
@@ -88,9 +87,9 @@ class _WeatherBody extends StatelessWidget {
           ListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(
-              '${_formatTime(hour.at)} · ${displayTemperature(city, hour.temperatureC)}',
+              '${_formatTime(hour.at)} · ${displayTemperature(hour.temperatureC)}',
             ),
-            subtitle: Text(displayCondition(city, hour.condition)),
+            subtitle: Text(displayCondition(hour.condition)),
           ),
       ],
     );

@@ -1,5 +1,3 @@
-import 'cities.dart';
-
 String weatherConditionLabel(int weatherCode) {
   if (weatherCode == 0) {
     return 'Clear';
@@ -36,18 +34,10 @@ const _japaneseConditions = {
   'Unknown': '不明',
 };
 
-/// Tokyo stays in English. Other cities use Japanese labels and 度.
-String displayTemperature(City city, double celsius) {
-  final value = celsius.toStringAsFixed(1);
-  if (city.id == Cities.tokyo.id) {
-    return '$value°C';
-  }
-  return '$value度';
+String displayTemperature(double celsius) {
+  return '${celsius.toStringAsFixed(1)}度';
 }
 
-String displayCondition(City city, String condition) {
-  if (city.id == Cities.tokyo.id) {
-    return condition;
-  }
+String displayCondition(String condition) {
   return _japaneseConditions[condition] ?? condition;
 }

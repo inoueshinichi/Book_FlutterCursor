@@ -54,8 +54,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Tokyo'), findsOneWidget);
-    expect(find.text('22.5°C · Clear'), findsOneWidget);
-    expect(find.text('10:00 · 23.0°C'), findsOneWidget);
+    expect(find.text('22.5度 · 晴れ'), findsOneWidget);
+    expect(find.text('10:00 · 23.0度'), findsOneWidget);
   });
 
   testWidgets('shows an error and retries', (tester) async {
@@ -79,7 +79,7 @@ void main() {
     await tester.tap(find.byKey(const Key('retryButton')));
     await tester.pumpAndSettle();
 
-    expect(find.text('22.5°C · Clear'), findsOneWidget);
+    expect(find.text('22.5度 · 晴れ'), findsOneWidget);
     expect(calls, 2);
   });
 
